@@ -11,6 +11,7 @@ const cors = require("cors");
 app.use(cors({
   origin: [
     "http://localhost:5173",
+    "https://todofrontend-xi-bay.vercel.app/"
   ]
 }));
 /************  part1 ****************/
