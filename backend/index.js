@@ -2,18 +2,22 @@ const express = require("express");
 const fs = require("fs");
 const app = express();
 
-const PORT = process.env.PORT || 3000;
-app.use(express.json());
-app.use(express.urlencoded({extended:true}));
-
 const cors = require("cors");
 
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://todofrontend-xi-bay.vercel.app/"
-  ]
+    "https://todofrontend-xi-bay.vercel.app"
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
 }));
+
+
+const PORT = process.env.PORT || 3000;
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+
+
 /************  part1 ****************/
 
 // app.get("/", (req, res)=>{
