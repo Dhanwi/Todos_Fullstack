@@ -6,7 +6,8 @@ const PORT = 3000;
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
-
+const cors = require('cors');
+app.use(cors());
 /************  part1 ****************/
 
 // app.get("/", (req, res)=>{
@@ -83,12 +84,6 @@ app.put("/addTodos", (req,res)=>{
     const body = req.body;
     const todos = fs.readFileSync('./todos.txt', 'utf-8')
     const parsedTodos = JSON.parse(todos);
-    const idx = parsedTodos.map((todo)=>{
-        todo.id == body.id
-    })
-    if(idx == -1){
-        return res.status(404)
-    }
     parsedTodos.map((todo)=>{
         if(todo.id == body.id){
             todo.todos = body.todos
