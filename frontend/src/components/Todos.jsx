@@ -83,6 +83,8 @@ export default function Todos() {
         .catch(console.error);
     }, []);
 
+    console.log("API:", import.meta.env.VITE_API_URL);
+    
   return (
     <div>
         <div className='text-3xl mb-10'>Todos</div>
