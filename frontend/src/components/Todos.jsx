@@ -85,24 +85,24 @@ export default function Todos() {
 
   return (
     <div>
-        <div className='text-3xl'>Todos</div>
-        <form onSubmit={handleSubmit} className=' flex flex-col gap-4'>
-            <label> Write your todo: 
+        <div className='text-3xl mb-10'>Todos</div>
+        <form onSubmit={handleSubmit} className='gap-4'>
+            <label className=' flex flex-col items-start gap-2 ml-2'> Write your todo: 
                 <input
                 type='text'
                 value={todo}
                 onChange={handleOnSetTodo}
-                className=' mx-2 border p-2 border-amber-950 bg-blue-400 rounded-xl'
+                className=' mx-2 border p-2 border-amber-950 bg-blue-200 rounded-xl'
                 />
             </label>
-            <label>Write the completion date here: 
+            <label className=' flex flex-col items-start gap-2 ml-2'>Write the completion date here: 
                 <textarea
                 value={date}
                 onChange={handleOnSetDate}
                 className=' mx-2 border p-2 border-amber-950 bg-blue-400 rounded-xl'
                 />
             </label>
-            <label className=' gap-2 '>Select the priority of the task:
+            <label className=' flex flex-col items-start gap-2 ml-2'>Select the priority of the task:
                 <select value={priority} onChange={handleOnSetPriority} className='mx-3 border-b-blue-800 border-2 p-2 rounded-2xl'>
                     <option value="Top">Top</option>
                     <option value="Middle">Middle</option>
@@ -110,7 +110,7 @@ export default function Todos() {
                 </select>
             </label>
             
-            <input type='submit' className='border-2 border-amber-950 rounded-2xl p-2 bg-amber-900'/>
+            <input type='submit' className='border-2 mt-4 ml-4 border-amber-950 rounded-2xl p-2 bg-amber-900'/>
         </form>
 
         <div className='flex gap-5 mt-10 items-center justify-center '>
