@@ -24,7 +24,7 @@ export default function Todos() {
     }
 
     // const handleUpdateTodo =(update)=>{
-    //     axios.put('http://localhost:3000/addTodos', update)
+    //     axios.put(`${import.meta.env.VITE_API_URL}/addTodos`, update)
     //     .then(()=>{
     //         setTodos((prev)=>{
     //             return prev.map(t => t.id === update.id ? update : t)
@@ -44,7 +44,7 @@ export default function Todos() {
 // now make chnages in submit handler too
 
     const handleDeleteTodo =(id)=>{
-        axios.delete(`http://localhost:3000/addTodos/${id}`)
+        axios.delete(`${import.meta.env.VITE_API_URL}/addTodos/${id}`)
         .then(()=>{
             setTodos((prev)=> prev.filter((t)=>t.id !== id))
         })
@@ -54,14 +54,14 @@ export default function Todos() {
     // and if it is new id then we call post req.
     const handleSubmit=(e)=>{
         e.preventDefault();
-        // axios.post('http://localhost:3000/addTodos', {todos: todo, date, priority})
+        // axios.post(`${import.meta.env.VITE_API_URL}/addTodos`, {todos: todo, date, priority})
         const payload = {todos: todo, date, priority}
         const request = editingId ? 
-        axios.put('http://localhost:3000/addTodos', {...payload, id:editingId}) :
-        axios.post('http://localhost:3000/addTodos', payload)
+        axios.put(`${import.meta.env.VITE_API_URL}/addTodos`, {...payload, id:editingId}) :
+        axios.post(`${import.meta.env.VITE_API_URL}/addTodos`, payload)
 
         request.then((res)=>{
-            return axios.get('http://localhost:3000/addTodos')
+            return axios.get(`${import.meta.env.VITE_API_URL}/addTodos`)
         })
         .then((res)=>setTodos(res.data))
         .finally(()=>{
@@ -78,7 +78,7 @@ export default function Todos() {
     }
 
     useEffect(()=>{
-        axios.get('http://localhost:3000/addTodos')
+        axios.get(`${import.meta.env.VITE_API_URL}/addTodos`)
         .then((res)=>setTodos(res.data))
         .catch(console.error);
     }, []);
