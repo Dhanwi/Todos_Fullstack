@@ -139,6 +139,27 @@ app.post('/todo/signUp', (req,res)=>{
     res.send("user registered successfully");
 })
 
+app.post('/todo/signIn', (req, res)=>{
+    const body = req.body;
+    const credential = fs.readFileSync('./credentials.txt', "utf-8");
+    const parsedCredential = JSON.parse(credential);
+    if(parsedCredential === "[]"){
+        return res.status(400).send("failed")
+    }
+
+    const oldUser = {
+        email: body.email,
+        password: body.password,
+    }
+
+    if(parsedCredential.some((user)=> user.email === oldUser.email && user.password === oldUser.password)){
+        return res.send("login Successfully")
+    }
+    else{
+        return res.status(404).send("no user exist")
+    }
+})
+
 app.listen(PORT, ()=>{
     console.log(`Successfully on running on http://localhost:${PORT}`)
 })
