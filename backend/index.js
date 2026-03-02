@@ -118,6 +118,27 @@ app.delete("/addTodos/:id", (req,res)=>{
     res.send("deleted successfully")
 })
 
+app.post('/todo/signUp', (req,res)=>{
+    
+    const credential = fs.readFileSync('./credentials.txt', 'utf-8');
+    const parsedCredential = JSON.parse(credential || "[]"); // if not present then initialize with empty array
+    
+    const body = req.body;
+    const newUser = {
+        email: body.email,
+        password: body.password,
+        userName: body.userName
+    }
+
+    if(parsedCredential.some((user)=>user.email === newUser.email)){
+       return res.send("user already exist")
+    }
+    
+    parsedCredential.push(newUser);
+    fs.writeFileSync('./credentials.txt', JSON.stringify(parsedCredential))
+    res.send("user registered successfully");
+})
+
 app.listen(PORT, ()=>{
     console.log(`Successfully on running on http://localhost:${PORT}`)
 })
