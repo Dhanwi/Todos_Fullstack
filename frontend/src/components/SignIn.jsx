@@ -9,9 +9,6 @@ export default function SignIn() {
     return (
       <div>
           <form>
-              <label>Username:
-                  <input value={username}/>
-              </label>
               <label>Email:
                   <input value={email}/>
               </label>
