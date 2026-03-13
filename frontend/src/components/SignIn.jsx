@@ -28,7 +28,7 @@ export default function SignIn() {
     return (
       <div>
           <form onSubmit={handleSubmit}>
-              <label>Email:
+              <label>Your Email:
                   <input value={email} onChange={handleEmail}/>
               </label>
               <label>Password:
